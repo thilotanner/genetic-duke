@@ -1,0 +1,10 @@
+require:
+    - play
+    - no.priv.garshol.duke -> duke 0.6
+    - org.apache.lucene -> lucene-core 3.5.0
+repositories:
+    - duke:
+        type:       iBiblio
+        root:       "http://duke.googlecode.com/hg/maven-repository/"
+        contains:
+            - no.priv.garshol.duke -> *

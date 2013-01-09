@@ -1,0 +1,13 @@
+# Ignore all dotfiles...
+.*
+# except for .gitignore
+!.gitignore
+
+data
+tmp
+
+# Ignore IDEA files
+*.iml
+*.ipr
+*.iws
+atlassian-ide-plugin.xml
