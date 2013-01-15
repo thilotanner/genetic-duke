@@ -1,17 +1,17 @@
 package models;
 
-import genetic.Population;
 import play.db.jpa.Model;
 
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.persistence.Entity;
 
+@Entity
 public class Evolution extends Model
 {
     public Integer numberOfConfigurations;
 
     public Integer numberOfGenerations;
 
-    @OneToMany
-    public List<Population> populations;
+    public String fitnessFunction;
+
+    public String selectionAlgorithm;
 }

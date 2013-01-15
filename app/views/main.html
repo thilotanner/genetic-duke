@@ -30,6 +30,36 @@
         </div>
 
         <div class="container">
+            #{if flash.success}
+                <div class="alert alert-success">
+                    <strong>${flash.success}</strong>
+                </div>
+            #{/if}
+
+            #{if flash.get('info')}
+                <div class="alert alert-info">
+                    <strong>${flash.get('info')}</strong>
+                </div>
+            #{/if}
+
+            #{if flash.get('warning')}
+                <div class="alert">
+                    <strong>${flash.get('warning')}</strong>
+                </div>
+            #{/if}
+
+            #{if flash.error}
+                <div class="alert alert-error">
+                    <strong>${flash.error}</strong>
+                </div>
+            #{/if}
+
+            #{ifErrors}
+                <div class="alert alert-error">
+                    <strong>Please correct these errors</strong>
+                </div>
+            #{/ifErrors}
+
             #{doLayout /}
         </div>
 

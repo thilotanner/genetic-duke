@@ -1,0 +1,56 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div class="page-header">
+    <h1>New Evolution</h1>
+</div>
+
+#{form @save(), class:'form-horizontal'}
+
+#{field 'evolution.numberOfConfigurations'}
+<div class="control-group ${field.errorClass}">
+    <label class="control-label" for="${field.id}">Configurations</label>
+    <div class="controls">
+        <input type="number" id="${field.id}" name="${field.name}" value="${field.value}" class="span1">
+    </div>
+</div>
+#{/field}
+
+#{field 'evolution.numberOfGenerations'}
+<div class="control-group ${field.errorClass}">
+    <label class="control-label" for="${field.id}">Generations</label>
+    <div class="controls">
+        <input type="number" id="${field.id}" name="${field.name}" value="${field.value}" class="span1">
+    </div>
+</div>
+#{/field}
+
+#{field 'evolution.fitnessFunction'}
+<div class="control-group ${field.errorClass}">
+    <label class="control-label" for="${field.id}">Fitness Function</label>
+    <div class="controls">
+        <select id="${field.id}" name="${field.name}" value="${field.value}" class="span6">
+            <option value="">F Fitness</option>
+            <option value="">G Fitness</option>
+        </select>
+    </div>
+</div>
+#{/field}
+
+#{field 'evolution.selectionAlgorithm'}
+<div class="control-group ${field.errorClass}">
+    <label class="control-label" for="${field.id}">Selection Algorithm</label>
+    <div class="controls">
+        <select id="${field.id}" name="${field.name}" value="${field.value}" class="span6">
+            <option value="">Simple</option>
+            <option value="">Roulette Wheel</option>
+        </select>
+    </div>
+</div>
+#{/field}
+
+<div class="form-actions">
+    <input type="submit" class="btn btn-primary" value="Submit">
+    <a href="@{index}" class="btn">Cancel</a>
+</div>
+#{/form}

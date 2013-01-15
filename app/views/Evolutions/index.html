@@ -2,8 +2,29 @@
 #{set title:'Home' /}
 
 <div class="page-header">
-    <div class="float-right">
-
-    </div>
+    <span class="pull-right">
+        <a href="@{form()}" class="btn btn-primary"><span class="icon-plus"></span> New Evolution</a>
+    </span>
     <h1>Evolutions</h1>
 </div>
+
+<table class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <th>Configurations</th>
+        <th>Generations</th>
+        <th>Fitness Function</th>
+        <th>Selection Algorithm</th>
+    </tr>
+    </thead>
+    <tbody>
+    #{list items:evolutions, as:'evolution'}
+    <tr>
+        <td><a href="@{show(evolution.id)}" class="tdlink">${evolution.numberOfConfigurations}</a></td>
+        <td><a href="@{show(evolution.id)}" class="tdlink">${evolution.numberOfGenerations}</a></td>
+        <td><a href="@{show(evolution.id)}" class="tdlink">${evolution.fitnessFunction}</a></td>
+        <td><a href="@{show(evolution.id)}" class="tdlink">${evolution.selectionAlgorithm}</a></td>
+    </tr>
+    #{/list}
+    </tbody>
+</table>

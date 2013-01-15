@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Contact' /}
+
+<div class="page-header">
+    <h1>Evolution ${evolution.id}</h1>
+</div>
+
+<dl class="dl-horizontal">
+    <dt>Configurations</dt>
+    <dd>${evolution.numberOfConfigurations}</dd>
+
+    <dt>Generations</dt>
+    <dd>${evolution.numberOfGenerations}</dd>
+
+    <dt>Fitness Function</dt>
+    <dd>${evolution.fitnessFunction}</dd>
+
+    <dt>Selection Algorithm</dt>
+    <dd>${evolution.selectionAlgorithm}</dd>
+</dl>
