@@ -1,0 +1,87 @@
+#{extends 'main.html' /}
+#{set title:'Contact' /}
+
+<div class="page-header">
+    <h1>Contact ${contact.id}</h1>
+</div>
+
+<dl class="dl-horizontal">
+#{if contact.company }
+    <dt>Company</dt>
+    <dd>${contact.company}</dd>
+#{/if}
+
+#{if contact.title }
+    <dt>Title</dt>
+    <dd>#{if contact.title}&{"contact.title." + contact.title}#{/if}</dd>
+#{/if}
+
+#{if contact.firstName }
+    <dt>First Name</dt>
+    <dd>${contact.firstName}</dd>
+#{/if}
+
+#{if contact.lastName }
+    <dt>Last Name</dt>
+    <dd>${contact.lastName}</dd>
+#{/if}
+
+#{if contact.street }
+    <dt>Street</dt>
+    <dd>${contact.street}</dd>
+#{/if}
+
+#{if contact.postOfficeBox }
+    <dt>Post Office Box</dt>
+    <dd>${contact.postOfficeBox}</dd>
+#{/if}
+
+#{if contact.postalCode }
+    <dt>Postal Code</dt>
+    <dd>${contact.postalCode}</dd>
+#{/if}
+
+#{if contact.city }
+    <dt>City</dt>
+    <dd>${contact.city}</dd>
+#{/if}
+
+#{if contact.countryCode }
+    <dt>Country</dt>
+    <dd>${contact.countryCode}</dd>
+#{/if}
+
+#{if contact.phone }
+    <dt>Phone</dt>
+    <dd>${contact.phone}</dd>
+#{/if}
+
+#{if contact.fax }
+    <dt>Fax</dt>
+    <dd>${contact.fax}</dd>
+#{/if}
+
+#{if contact.mobile }
+    <dt>Mobile</dt>
+    <dd>${contact.mobile}</dd>
+#{/if}
+
+#{if contact.email }
+    <dt>Email</dt>
+    <dd><a href="mailto:${contact.email}">${contact.email}</a></dd>
+#{/if}
+
+#{if contact.website }
+    <dt>Website</dt>
+    <dd><a href="${contact.website}">${contact.website}</a></dd>
+#{/if}
+
+
+#{if contact.comments }
+    <dt>Comments</dt>
+    <dd>${contact.comments?.raw()}</dd>
+#{/if}
+</dl>
+
+<h2>Map</h2>
+<iframe width="600" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?q=${contact.street},+${contact.postalCode}+${contact.city}&amp;hl=de&amp;ie=UTF8&amp;iwloc=A&amp;output=embed"></iframe>

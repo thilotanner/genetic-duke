@@ -3,11 +3,23 @@
 # except for .gitignore
 !.gitignore
 
+# Ignore Play! working directory #
 data
+db
+eclipse
+lib
+log
+logs
+modules
+precompiled
+project/project
+project/target
+target
 tmp
-
-# Ignore IDEA files
+test-result
+server.pid
 *.iml
 *.ipr
 *.iws
+*.eml
 atlassian-ide-plugin.xml
