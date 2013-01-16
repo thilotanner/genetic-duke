@@ -5,30 +5,30 @@ import models.GeneticConfiguration;
 public class FFitness implements FitnessFunction
 {
     @Override
-    public double calculateFitness(GeneticConfiguration geneticConfiguration)
+    public double calculateFitness(GeneticConfiguration configuration)
     {
-        return getFMeasure(geneticConfiguration);
+        return getFMeasure(configuration);
     }
 
-    public double getPrecision(GeneticConfiguration geneticConfiguration) {
-        if(geneticConfiguration.truePositives == 0) {
+    public double getPrecision(GeneticConfiguration configuration) {
+        if(configuration.truePositives == 0) {
             return 0d;
         }
 
-        return ((double) geneticConfiguration.truePositives) / ((double) geneticConfiguration.truePositives + geneticConfiguration.falsePositives);
+        return ((double) configuration.truePositives) / ((double) configuration.truePositives + configuration.falsePositives);
     }
 
-    public double getRecall(GeneticConfiguration geneticConfiguration) {
-        if(geneticConfiguration.truePositives == 0) {
+    public double getRecall(GeneticConfiguration configuration) {
+        if(configuration.truePositives == 0) {
             return 0d;
         }
 
-        return ((double) geneticConfiguration.truePositives) / ((double) geneticConfiguration.truePositives + geneticConfiguration.falseNegatives);
+        return ((double) configuration.truePositives) / ((double) configuration.truePositives + configuration.falseNegatives);
     }
 
-    public double getFMeasure(GeneticConfiguration geneticConfiguration) {
-        double precision = getPrecision(geneticConfiguration);
-        double recall = getRecall(geneticConfiguration);
+    public double getFMeasure(GeneticConfiguration configuration) {
+        double precision = getPrecision(configuration);
+        double recall = getRecall(configuration);
 
         if(precision == 0d || recall == 0d) {
             return 0d;
