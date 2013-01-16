@@ -2,17 +2,18 @@ package jobs;
 
 import models.Contact;
 import no.priv.garshol.duke.Record;
+import no.priv.garshol.duke.RecordImpl;
 import no.priv.garshol.duke.RecordIterator;
 
 import java.util.ListIterator;
 
 public class ContactRecordIterator extends RecordIterator
 {
-    private ListIterator<Contact> iterator;
+    private ListIterator iterator;
 
     public ContactRecordIterator()
     {
-        iterator = Contact
+        iterator = Contact.findAll().listIterator();
     }
 
     @Override
@@ -24,8 +25,16 @@ public class ContactRecordIterator extends RecordIterator
     @Override
     public Record next()
     {
-        Contact contact = iterator.next();
+        Contact contact = (Contact) iterator.next();
 
-        new Record()
+        RecordImpl record = new RecordImpl();
+        record.addValue("id", contact.getId().toString());
+        record.addValue("company", contact.company != null ? contact.company : "");
+        record.addValue("firstName", contact.firstName != null ? contact.firstName : "");
+        record.addValue("lastName", contact.lastName != null ? contact.lastName : "");
+        record.addValue("street", contact.street != null ? contact.street : "");
+        record.addValue("city", contact.city != null ? contact.city : "");
+
+        return record;
     }
 }

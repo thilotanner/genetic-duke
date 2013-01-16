@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Contact' /}
+#{set title:'Evolution' /}
 
 <div class="page-header">
     <h1>Evolution ${evolution.id}</h1>
@@ -18,3 +18,15 @@
     <dt>Selection Algorithm</dt>
     <dd>${evolution.selectionAlgorithm}</dd>
 </dl>
+
+<table class="table table-hover table-striped">
+    <tbody>
+    #{list items:evolution.generations, as:'generation'}
+        <tr>
+        #{list items:generation?.geneticConfigurations, as:'configuration'}
+            <td><a href="@{GeneticConfigurations.show(configuration.id)}" class="tdlink">${configuration.fitness.format("0.00")}</a></td>
+        #{/list}
+        </tr>
+    #{/list}
+    </tbody>
+</table>

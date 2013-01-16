@@ -9,7 +9,7 @@ public class ContactDataSource implements DataSource
     @Override
     public RecordIterator getRecords()
     {
-
+        return new ContactRecordIterator();
     }
 
     @Override

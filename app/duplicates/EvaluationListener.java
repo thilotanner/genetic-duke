@@ -116,6 +116,31 @@ public class EvaluationListener extends AbstractMatchListener {
         matchFound = false;
     }
 
+    public int getTotalRecords()
+    {
+        return totalRecords;
+    }
+
+    public int getTruePositives()
+    {
+        return truePositives;
+    }
+
+    public int getFalsePositives()
+    {
+        return falsePositives;
+    }
+
+    public int getFalseNegatives()
+    {
+        return falseNegatives;
+    }
+
+    public int getTrueNegatives()
+    {
+        return trueNegatives;
+    }
+
     public double getPrecision() {
         if(truePositives == 0) {
             return 0d;

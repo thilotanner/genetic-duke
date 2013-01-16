@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Evolution' /}
 
 <div class="page-header">
     <h1>New Evolution</h1>
@@ -30,8 +30,7 @@
     <label class="control-label" for="${field.id}">Fitness Function</label>
     <div class="controls">
         <select id="${field.id}" name="${field.name}" value="${field.value}" class="span6">
-            <option value="">F Fitness</option>
-            <option value="">G Fitness</option>
+            <option value="fitness.FFitness">F Fitness</option>
         </select>
     </div>
 </div>
@@ -42,8 +41,7 @@
     <label class="control-label" for="${field.id}">Selection Algorithm</label>
     <div class="controls">
         <select id="${field.id}" name="${field.name}" value="${field.value}" class="span6">
-            <option value="">Simple</option>
-            <option value="">Roulette Wheel</option>
+            <option value="selection.SimpleSelection">Simple</option>
         </select>
     </div>
 </div>

@@ -1,8 +1,10 @@
 package controllers;
 
+import jobs.StartEvolutionJob;
 import models.Evolution;
 import play.data.validation.Valid;
 import play.data.validation.Validation;
+import play.db.jpa.JPA;
 import play.mvc.Controller;
 
 import java.util.List;
@@ -36,6 +38,13 @@ public class Evolutions extends Controller
         }
 
         evolution.save();
+
+        JPA.em().getTransaction().commit();
+        JPA.em().getTransaction().begin();
+
+        StartEvolutionJob startEvolutionJob = new StartEvolutionJob(evolution.getId());
+        startEvolutionJob.now();
+
         flash.success("Evolution successfully started");
         index();
     }
