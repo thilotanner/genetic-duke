@@ -37,7 +37,7 @@ public class GeneticConfiguration extends Model
         GeneticConfiguration configuration = new GeneticConfiguration();
         configuration.threshold = threshold;
 
-        List<GeneticProperty> geneticProperties = new ArrayList<GeneticProperty>();
+        List<GeneticProperty> duplicateProperties = new ArrayList<GeneticProperty>();
         for(GeneticProperty property : geneticProperties) {
             GeneticProperty duplicateProperty = new GeneticProperty();
             duplicateProperty.geneticConfiguration = configuration;
@@ -45,9 +45,9 @@ public class GeneticConfiguration extends Model
             duplicateProperty.comparator = property.comparator;
             duplicateProperty.lowProbability = property.lowProbability;
             duplicateProperty.highProbability = property.highProbability;
-            geneticProperties.add(duplicateProperty);
+            duplicateProperties.add(duplicateProperty);
         }
-        configuration.geneticProperties = geneticProperties;
+        configuration.geneticProperties = duplicateProperties;
 
         return configuration;
     }

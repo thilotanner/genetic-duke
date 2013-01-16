@@ -28,7 +28,7 @@ public class EvaluateGenerationJob extends Job
             promises.add(evaluateConfigJob.now());
         }
 
-        if(generation.number >= generation.evolution.numberOfGenerations) {
+        if(generation.number >= generation.evolution.numberOfGenerations - 1) {
             return; // stop evolution
         }
 

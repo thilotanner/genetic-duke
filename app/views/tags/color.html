@@ -1,0 +1,21 @@
+%{
+    def color = {
+        number = 1 - _number
+        number = number * 100;
+        if (number < 50) {
+        // green to yellow
+        r = (int) (255 * (number / 50));
+        g = 255;
+
+        } else {
+        // yellow to red
+        r = 255;
+        g = (int) (255 * ((50-number % 50) / 50));
+        }
+        b = 0;
+
+        return r + ',' + g + ',' + b;
+    }
+}%
+
+<div style='background-color: rgb(${color(_number)})'>${_number.format("0.00")}</div>

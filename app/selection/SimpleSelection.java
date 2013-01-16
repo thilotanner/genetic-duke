@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class SimpleSelection implements SelectionAlgorithm
 {
-    private Random random;
+    private Random random = new Random();
 
     @Override
     public List<GeneticConfiguration> select(List<GeneticConfiguration> configurations)

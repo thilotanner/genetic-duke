@@ -24,7 +24,7 @@
     #{list items:evolution.generations, as:'generation'}
         <tr>
         #{list items:generation?.geneticConfigurations, as:'configuration'}
-            <td><a href="@{GeneticConfigurations.show(configuration.id)}" class="tdlink">${configuration.fitness.format("0.00")}</a></td>
+            <td><a href="@{GeneticConfigurations.show(configuration.id)}" class="tdlink">#{color number:configuration.fitness /}</a></td>
         #{/list}
         </tr>
     #{/list}

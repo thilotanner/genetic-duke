@@ -64,6 +64,7 @@ public class EvolveGenerationJob extends Job
 
         // save and start evaluation
         Generation newGeneration = new Generation();
+        newGeneration.evolution = generation.evolution;
         newGeneration.number = generation.number + 1;
         newGeneration.save();
 
@@ -92,12 +93,12 @@ public class EvolveGenerationJob extends Job
     private void mutate(GeneticConfiguration configuration) {
         int propertiesToChange = Math.abs(random.nextInt() % 3 + 1);
         for(int i = 0; i < propertiesToChange; i++) {
-            int randPos = Math.abs(random.nextInt() % (configuration.geneticProperties.size() + 1));
-            if(randPos == configuration.geneticProperties.size()) {
+            int randPos = Math.abs(random.nextInt() % configuration.geneticProperties.size());
+            if(randPos == 0) {
                 configuration.threshold = random.nextDouble() * 0.5d + 0.5d;
             }
-            GeneticProperty property = configuration.geneticProperties.get(i);
-            configuration.geneticProperties.set(i, getRandomProperty(configuration, property.name));
+            GeneticProperty property = configuration.geneticProperties.get(randPos);
+            configuration.geneticProperties.set(randPos, getRandomProperty(configuration, property.name));
         }
     }
 

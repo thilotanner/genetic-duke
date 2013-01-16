@@ -40,7 +40,7 @@ public class StartEvolutionJob extends Job
 
         Generation generation = new Generation();
         generation.evolution = evolution;
-        generation.number = 1;
+        generation.number = 0;
         generation.save();
 
         // create first generation
