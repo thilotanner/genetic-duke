@@ -1,0 +1,27 @@
+#{extends 'main.html' /}
+#{set title:'Deduplicate Contacts' /}
+
+#{list items:duplicates, as:'duplicate'}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th style="width: 300px">Company</th>
+        <th style="width: 160px">First Name</th>
+        <th style="width: 300px">Last Name</th>
+        <th style="width: 220px">Street</th>
+        <th>City</th>
+    </tr>
+    </thead>
+    <tbody>
+        #{list items:duplicate.values(), as:'contact'}
+        <tr>
+            <td>${contact.company}</td>
+            <td>${contact.firstName}</td>
+            <td>${contact.lastName}</td>
+            <td>${contact.street}</td>
+            <td>${contact.city}</td>
+        </tr>
+        #{/list}
+    </tbody>
+</table>
+#{/list}
