@@ -24,7 +24,16 @@
     #{list items:evolution.generations, as:'generation'}
         <tr>
         #{list items:generation?.geneticConfigurations, as:'configuration'}
-            <td style="background: rgb(#{color number: configuration.fitness /})"><a href="@{GeneticConfigurations.show(configuration.id)}" style="text-align: center; font-weight: bold" class="tdlink">${configuration.fitness.format("0.00")}</a></td>
+            #{if configuration.fitness}
+            <td style="background: rgb(#{color number: configuration.fitness /})">
+                <a href="@{GeneticConfigurations.show(configuration.id)}" style="text-align: center; font-weight: bold" class="tdlink">
+                    ${configuration.fitness.format("0.00")}
+                </a>
+            </td>
+            #{/if}
+            #{else}
+            <td style="text-align: center;"><span class="icon-spinner icon-spin"></span></td>
+            #{/else}
         #{/list}
         </tr>
     #{/list}

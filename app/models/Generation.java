@@ -2,6 +2,7 @@ package models;
 
 import play.db.jpa.Model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -15,6 +16,6 @@ public class Generation extends Model
 
     public Integer number;
 
-    @OneToMany(mappedBy = "generation")
+    @OneToMany(mappedBy = "generation", cascade = CascadeType.ALL)
     public List<GeneticConfiguration> geneticConfigurations;
 }

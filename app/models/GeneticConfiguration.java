@@ -17,7 +17,7 @@ public class GeneticConfiguration extends Model
 
     public Double threshold;
 
-    @OneToMany(mappedBy = "geneticConfiguration", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "geneticConfiguration", cascade = CascadeType.ALL)
     public List<GeneticProperty> geneticProperties = new ArrayList<GeneticProperty>();
 
     public Integer totalRecords = 0;
@@ -30,7 +30,7 @@ public class GeneticConfiguration extends Model
 
     public Integer trueNegatives = 0;
 
-    public double fitness;
+    public Double fitness;
 
     public GeneticConfiguration duplicate()
     {

@@ -48,4 +48,16 @@ public class Evolutions extends Controller
         flash.success("Evolution successfully started");
         index();
     }
+
+    public static void delete(Long id)
+    {
+        notFoundIfNull(id);
+        Evolution evolution = Evolution.findById(id);
+        notFoundIfNull(evolution);
+
+        evolution.delete();
+
+        flash.success("Evolution successfully deleted");
+        index();
+    }
 }

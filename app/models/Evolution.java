@@ -2,6 +2,7 @@ package models;
 
 import play.db.jpa.Model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -19,7 +20,7 @@ public class Evolution extends Model
 
     public String selectionAlgorithm;
 
-    @OneToMany(mappedBy = "evolution")
+    @OneToMany(mappedBy = "evolution", cascade = CascadeType.ALL)
     @OrderColumn(name = "number")
     public List<Generation> generations;
 }

@@ -73,7 +73,9 @@ public class EvolveGenerationJob extends Job
     }
 
     private void mutate(List<GeneticConfiguration> configurations) {
-        for(GeneticConfiguration configuration : configurations) {
+        // elitist strategy
+        for(int i = 1; i < configurations.size(); i++)  {
+            GeneticConfiguration configuration = configurations.get(i);
             int choice = Math.abs(random.nextInt() % 4);
             if(choice == 0) {
                 mutate(configuration);

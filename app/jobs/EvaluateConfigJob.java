@@ -33,41 +33,49 @@ public class EvaluateConfigJob extends Job
             throw new IllegalStateException("Unkown genetic configuration");
         }
 
-        Configuration configuration = new Configuration();
-        configuration.addDataSource(0, new ContactDataSource());
+        try {
+            Configuration configuration = new Configuration();
+            configuration.addDataSource(0, new ContactDataSource());
 
-        configuration.setThreshold(geneticConfiguration.threshold);
-        configuration.setMaybeThreshold(geneticConfiguration.threshold);
+            configuration.setThreshold(geneticConfiguration.threshold);
+            configuration.setMaybeThreshold(geneticConfiguration.threshold);
 
-        List<Property> properties = new ArrayList<Property>();
-        properties.add(new Property("id"));
-        for(GeneticProperty geneticProperty : geneticConfiguration.geneticProperties) {
-            Class<Comparator> comparatorClass = (Class<Comparator>) Class.forName(geneticProperty.comparator);
-            Comparator comparator = comparatorClass.newInstance();
-            Property property =
-                    new Property(geneticProperty.name, comparator, geneticProperty.lowProbability, geneticProperty.highProbability);
-            properties.add(property);
+            List<Property> properties = new ArrayList<Property>();
+            properties.add(new Property("id"));
+            for(GeneticProperty geneticProperty : geneticConfiguration.geneticProperties) {
+                Class<Comparator> comparatorClass = (Class<Comparator>) Class.forName(geneticProperty.comparator);
+                Comparator comparator = comparatorClass.newInstance();
+                Property property =
+                        new Property(geneticProperty.name, comparator, geneticProperty.lowProbability, geneticProperty.highProbability);
+                properties.add(property);
+            }
+            configuration.setProperties(properties);
+
+            Processor processor = new Processor(configuration, false);
+            EvaluationListener listener = new EvaluationListener(Play.getFile("conf/duplicates.txt"));
+            processor.addMatchListener(listener);
+            processor.deduplicate();
+            processor.close();
+
+            geneticConfiguration.totalRecords = listener.getTotalRecords();
+            geneticConfiguration.truePositives = listener.getTruePositives();
+            geneticConfiguration.trueNegatives = listener.getTrueNegatives();
+            geneticConfiguration.falsePositives = listener.getFalsePositives();
+            geneticConfiguration.falseNegatives = listener.getFalseNegatives();
+
+            // calculate fitness
+            Class<FitnessFunction> fitnessFunctionClass =
+                    (Class<FitnessFunction>) Class.forName(geneticConfiguration.generation.evolution.fitnessFunction);
+            FitnessFunction fitnessFunction = fitnessFunctionClass.newInstance();
+            geneticConfiguration.fitness = fitnessFunction.calculateFitness(geneticConfiguration);
+        } catch (Exception e) {
+            geneticConfiguration.totalRecords = 0;
+            geneticConfiguration.truePositives = 0;
+            geneticConfiguration.trueNegatives = 0;
+            geneticConfiguration.falsePositives = 0;
+            geneticConfiguration.falseNegatives = 0;
+            geneticConfiguration.fitness = 0.0d;
         }
-        configuration.setProperties(properties);
-
-        Processor processor = new Processor(configuration, false);
-        EvaluationListener listener = new EvaluationListener(Play.getFile("conf/duplicates.txt"));
-        processor.addMatchListener(listener);
-        processor.deduplicate();
-        processor.close();
-
-        geneticConfiguration.totalRecords = listener.getTotalRecords();
-        geneticConfiguration.truePositives = listener.getTruePositives();
-        geneticConfiguration.trueNegatives = listener.getTrueNegatives();
-        geneticConfiguration.falsePositives = listener.getFalsePositives();
-        geneticConfiguration.falseNegatives = listener.getFalseNegatives();
-
-        // calculate fitness
-        Class<FitnessFunction> fitnessFunctionClass =
-                (Class<FitnessFunction>) Class.forName(geneticConfiguration.generation.evolution.fitnessFunction);
-        FitnessFunction fitnessFunction = fitnessFunctionClass.newInstance();
-        geneticConfiguration.fitness = fitnessFunction.calculateFitness(geneticConfiguration);
-
         geneticConfiguration.save();
     }
 }

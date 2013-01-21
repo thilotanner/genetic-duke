@@ -15,6 +15,7 @@
         <th>Generations</th>
         <th>Fitness Function</th>
         <th>Selection Algorithm</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -24,6 +25,7 @@
         <td><a href="@{show(evolution.id)}" class="tdlink">${evolution.numberOfGenerations}</a></td>
         <td><a href="@{show(evolution.id)}" class="tdlink">${evolution.fitnessFunction}</a></td>
         <td><a href="@{show(evolution.id)}" class="tdlink">${evolution.selectionAlgorithm}</a></td>
+        <td><a href="@{delete(evolution.id)}"><span class="icon-trash"></span></a></td>
     </tr>
     #{/list}
     </tbody>
