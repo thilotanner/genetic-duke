@@ -18,8 +18,6 @@ public class EvaluateConfigJob extends Job
 {
     private Long geneticConfigurationId;
 
-    private GeneticConfiguration geneticConfiguration;
-
     public EvaluateConfigJob(Long geneticConfigurationId)
     {
         this.geneticConfigurationId = geneticConfigurationId;
@@ -28,7 +26,7 @@ public class EvaluateConfigJob extends Job
     @Override
     public void doJob() throws Exception
     {
-        geneticConfiguration = GeneticConfiguration.findById(geneticConfigurationId);
+        GeneticConfiguration geneticConfiguration = GeneticConfiguration.findById(geneticConfigurationId);
         if(geneticConfiguration == null) {
             throw new IllegalStateException("Unkown genetic configuration");
         }
@@ -69,12 +67,7 @@ public class EvaluateConfigJob extends Job
             FitnessFunction fitnessFunction = fitnessFunctionClass.newInstance();
             geneticConfiguration.fitness = fitnessFunction.calculateFitness(geneticConfiguration);
         } catch (Exception e) {
-            geneticConfiguration.totalRecords = 0;
-            geneticConfiguration.truePositives = 0;
-            geneticConfiguration.trueNegatives = 0;
-            geneticConfiguration.falsePositives = 0;
-            geneticConfiguration.falseNegatives = 0;
-            geneticConfiguration.fitness = 0.0d;
+            geneticConfiguration.failed = true;
         }
         geneticConfiguration.save();
     }

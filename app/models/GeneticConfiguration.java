@@ -20,17 +20,19 @@ public class GeneticConfiguration extends Model
     @OneToMany(mappedBy = "geneticConfiguration", cascade = CascadeType.ALL)
     public List<GeneticProperty> geneticProperties = new ArrayList<GeneticProperty>();
 
-    public Integer totalRecords = 0;
+    public int totalRecords = 0;
 
-    public Integer truePositives = 0;
+    public int truePositives = 0;
 
-    public Integer falsePositives = 0;
+    public int falsePositives = 0;
 
-    public Integer falseNegatives = 0;
+    public int falseNegatives = 0;
 
-    public Integer trueNegatives = 0;
+    public int trueNegatives = 0;
 
-    public Double fitness;
+    public double fitness = 0.0d;
+
+    public boolean failed = false;
 
     public GeneticConfiguration duplicate()
     {
