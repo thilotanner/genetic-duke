@@ -177,6 +177,6 @@ public class EvaluationListener extends AbstractMatchListener {
         Logger.info(String.format("True negatives:  %d", trueNegatives));
         Logger.info(String.format("Precision:       %s", getPrecision()));
         Logger.info(String.format("Recall:          %s", getRecall()));
-        Logger.info(String.format("F-measure:       %s", getFMeasure()));
+        Logger.info(String.format("Fitness:         %s", getFMeasure()));
     }
 }
